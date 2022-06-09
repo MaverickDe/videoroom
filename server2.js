@@ -6,7 +6,9 @@ const app = express()
 const http = require("https")
 const path = require("path")
 // const app2 = http.createServer(app)
-const io = require('socket.io')(app.listen(5000))
+let port =process.env.PORT || 5000
+
+const io = require('socket.io')(app.listen(port))
 app.use(express.static("public"));
 
 // app2.listen("5000")
