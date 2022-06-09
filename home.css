@@ -1,0 +1,755 @@
+
+*{
+    margin:0px;
+    padding:0px;
+   
+    color:white
+}
+
+input{
+    color: black;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    min-height: 450px;
+    display: flex;justify-content: center;
+    background-color: rgb(4, 4, 68);
+    overflow-y:scroll;
+
+}
+
+.body{
+    width: 100%;
+    max-width: 1500px;
+    height: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+}
+
+.body>section{
+    height: 100%;
+}
+
+
+.options{
+    width: 70px;
+    background-color: rgb(4, 40, 68,0.2) ;
+    /* z-index: 2; */
+    box-shadow: 0 1px 10px  black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+
+.options>.logo {
+        width:50px;
+        height:50px;
+        background-color: blue;
+        margin-bottom: 40px ;
+        margin-top: 10px 
+
+    }
+
+     .options>button {
+        min-width:50px;
+        max-width:50px;
+        height:50px;
+        background-color: blue;
+        margin-bottom: 20px ;
+
+    }
+
+
+
+.comment_users{
+    background-color: rgb(4, 40, 68,0.2) ;
+    /* width:calc(100%/2 - 20px); */
+    width:310px;
+    max-width: 310px;
+    box-shadow: 0 1px 10px  black;
+    
+}
+
+
+.videos{
+    /* background-color: yellow; */
+    width:calc(100% - (70px + 310px));
+    display:flex;
+    flex-direction: column;
+
+}
+
+.videos>div{
+    width:100%
+}
+
+.videos_div1{
+    height: 70px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    overflow: scroll;
+
+    
+}
+
+.des{
+    margin-left:10px;
+   
+   
+ 
+    /* background-color: blue; */
+}
+
+.videos_div2{
+
+    height: calc(100% - (70px + 70px - 20px));
+    /* background-color: yellow; */
+
+    margin-bottom:10px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+.main{
+    height: calc(100% - 200px);
+    background-color: rgb(128, 128, 12,0.1);
+    border-radius: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    animation: loader 1s 1s infinite 
+    /* background-color: red; */
+    
+}
+
+
+    .loader{
+        animation: loader 1s 1s infinite 
+    }
+
+@keyframes loader {
+
+    0%{
+        transform: scaleX(1);
+        background-color: rgb(6, 6, 61);
+    }
+    100%{
+        transform: scaleX(0.99);
+        background-color: rgb(128, 128, 12,0.1);
+    }
+    
+}
+
+.sub-main{
+    /* background-color: red; */
+    height: 200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+   
+}
+
+
+.user_controls{
+    position: absolute;
+   
+    max-width: 200px;
+    min-width:150px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 25px;
+    bottom: 10px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    left: 0px;
+    background-color: rgb(12, 5, 78,0.7);
+    animation: slidein 0.5s ease;
+    z-index: 2;
+    display: none;
+    padding: 5px;
+
+}
+
+.user_controls>button{
+    height: 100%;
+    min-width:20px;
+    max-width:40px;
+    background-color: blue;
+    margin-right:  10px
+    
+}
+
+.speechanalysis{
+  
+    width:30px;
+    height: 35px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    
+}
+.recordindicator{
+  
+    width:10px;
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
+    background-color: red;
+    animation: blink 1s 1s infinite ease 
+    
+}
+
+
+@keyframes blink {
+    0%{
+        transform: scale(0.5);
+    }
+   100%{
+        transform: scale(1);
+    }
+    
+}
+
+
+
+
+
+
+/*  */
+
+
+
+
+@keyframes slidein {
+
+    0%{left:-10%;
+        opacity:0}
+        50%{
+            opacity:0.5
+        }
+    100%{left:0%;
+        opacity:1}
+    
+}
+
+.sub-main>div{
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgb(128, 128, 12,0.1);
+    /* background-color: blue; */
+
+    position: relative;
+    width:calc((100%  / 3) - 10px);
+    overflow:hidden
+
+}
+.controls{
+    height: 70px;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    border-top: 1px solid rebeccapurple;
+
+
+}
+
+button{
+    outline: none;
+    border: none;
+    min-width: 90px;
+    border-radius: 10px;
+    height: 40px;
+    background-color: rgba(72, 12, 128, 0.1);
+
+}
+
+.controls>button ,.copy-link {
+   
+    height: 50px;
+    margin: 0px 10px;
+   
+    color:white
+
+  
+}
+
+
+.controls>div{
+    /* background-color: blue; */
+    display: flex;
+}
+
+.copy-link{
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-right: 0px;
+}
+.link{
+    width:300px;
+    height: 50px;
+    overflow-x: scroll;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: rgba(72, 12, 128, 0.1);
+    text-align: center
+    
+    
+}
+.controls> ._exitroom{
+    width:200px;
+    background-color: rgba(0, 255, 34,0.1);
+    color: red;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+
+
+
+::-webkit-scrollbar{
+background: rgb(255, 10, 10);
+height: 0px;
+width: 0px;
+
+
+}
+
+
+
+
+
+
+.controls>button:hover, button:hover{
+    background-color: rgb(165, 42, 42,0.2);
+}
+
+
+
+.connected-users{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 10px ;
+    margin-top: 10px;
+    box-sizing: border-box;
+    height: calc(100% / 2.5);
+    overflow-y: scroll;
+    /* background-color: blue; */
+    width: 100%;
+
+}
+
+.connected-users>h4{
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.connected-users>div{
+    height: 50px;
+    width: 100%;
+    display: flex;
+
+    
+    border-bottom: 1px solid blue;
+    align-items: center;
+}
+
+
+.connected-users>div img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+
+}
+.connected-users>div p {
+    width: 100px;
+    overflow-x: scroll;
+    
+    margin-right: 20px;
+
+}
+.connected-users>div p {
+    width: 100px;
+    overflow-x: scroll;
+    
+    margin-right: 20px;
+
+}
+
+.message{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 10px ;
+    margin-top: 10px;
+    box-sizing: border-box;
+    height: calc(100% / 2.5);
+    overflow-y: scroll;
+    /* background-color: blue; */
+    width: 100%;
+   
+
+}
+
+.message>h4{
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.message>div{
+    margin-bottom: 0px;
+    width: 100%;
+   min-height: 50px;
+   /* background-color: yellow; */
+    
+}
+
+.message>div>fieldset>legend{
+    text-transform: capitalize;
+    color: red;
+    font-weight: bolder;
+    text-decoration: wavy;
+    font-size: larger;
+}
+.message>div>fieldset{
+    padding-left: 10px;
+    outline: none;
+    border: none;
+max-width: 100%;
+   
+   
+   
+    /* background-color: red; */
+}
+.message>div>fieldset>p{
+  width: 100%;
+  max-width: 100%;
+  background-color: rgb(255, 0, 119);
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+  /* overflow-x: hidden; */
+   
+    /* background-color: red; */
+}
+
+
+
+
+
+.notification{
+    position: absolute;
+    width:400px;
+    height: 200px;
+    background-color:rgb(165, 42, 42,0.4);
+    top:50%;
+    color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.message_not{
+    position: absolute;
+    width:50px;
+    height: 50px;
+    /* background-color:rgb(165, 42, 42,0.4); */
+    top:50%;
+    color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+._createandjoin{
+    position: absolute;
+    width:calc(100% / 2);
+    min-width: 300px;
+    height: calc(100% / 2);
+    min-height: 500px;
+    background-color:rgb(165, 42, 42,0.4);
+    top:20%;
+    color: aqua;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+    /* display: none; */
+}
+
+._createandjoin>input{
+    width:400px;
+   
+
+}
+
+
+
+
+
+
+.message_not>img{
+    width:100%;
+    height: 100%;
+    border-radius: 50%;
+
+}
+
+
+video{
+  
+   width: 100%;
+  height: 100%;
+    object-fit: cover;
+   
+  /* background-size: cover; */
+/* background-color: blue; */
+    
+    
+}
+
+
+
+
+
+@media screen and (max-width:1400px) {
+
+    
+    .comment_users{
+        display: none;
+        max-width: 100%;
+    }
+
+    .comment_users_active{
+        display: block;
+       position: absolute;
+       right:0px;
+       background-color:rgb(4, 4, 68)
+    }
+
+
+    .videos{
+        width:calc(100% - 70px)
+    }
+
+    button{
+        min-width:50px;
+
+        height: 40px;
+        font-size: 13px;
+    }
+
+
+   
+    .controls> ._exitroom{
+       width:50px;
+        height: 40px;
+        /* font-size: smaller; */
+        font-weight: 100;
+        font-size: 15px;
+
+    }
+    
+    .link{
+        width: 100px;
+        font-size: smaller;
+    }
+
+   
+}
+
+
+
+@media screen  and (max-width:560px) {
+
+    .main{
+        height: 245px;
+    }
+
+    .sub-main{
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        justify-content: flex-start;
+    }
+    .sub-main>div{
+      height: 150px;
+      width: 150px;
+      margin: 10px;
+    }
+
+
+    .controls{
+        overflow-x: scroll;
+    }
+
+    .options{
+        display: none;
+    }
+
+   
+
+
+    .body{
+        position: relative;
+    }
+    .options_active{
+        display: flex;
+       position: absolute;
+        left:0px;
+        background-color:rgb(4, 4, 68)
+    }
+
+
+    .videos{
+        width: 100%;
+    }
+    
+    
+}
+
+
+@media screen and (max-width:392px) {
+
+    .sub-main{
+        justify-content: center;
+    }
+    .sub-main>div{
+      height: 100px;
+      width: 100px;
+
+    
+    }
+    
+
+    
+.user_controls{
+   
+    min-width: 100%;
+   }
+
+    .controls>button{
+       margin: 0px 5px;
+    }
+
+    button{
+        min-width:20px;
+        max-width: 20px;
+        max-height: 30px;
+        font-size: 13px;
+        
+    }
+    .controls> ._exitroom{
+       min-width:50px;
+        height: 40px;
+        font-size:10px;
+
+    }
+    
+    .link{
+        width: 100px;
+        height: 30px;
+        font-size: 9px;
+        padding: 0px 10px;
+    }
+    
+}
+
+
+@media screen and (max-height:700px ){
+
+
+    .videos_div2{
+        /* display: flex; */
+        flex-direction: row;
+        background-color: black;
+        box-sizing: border-box;
+        
+    }
+    .main{
+       width:calc(100% - 30%);
+       height: 100%;
+       background-color: brown;
+       margin-right: 10px;
+       /* display: n; */
+        /* width:calc(100% - 25px) */
+    
+    }
+    .sub-main{
+       height: 100%;
+       width: 30%;
+       /* flex-wrap: wrap; */
+       flex-direction:column;
+       /* background-color: aqua; */
+       /* justify-content: flex-start; */
+
+    }
+
+    .sub-main>div{
+        width:100%;
+        height: calc(100% / 2.5);
+        margin-bottom:20px;
+        background-color: aqua;
+        /* height:60px */
+    }
+    
+    @media screen and (max-width:697px) {
+        .sub-main>div{
+            width:100%;
+            height: calc(100% / 4);
+          
+            /* height:60px */
+        }
+        
+    }
+} 
+
+
+@media screen and (max-height:579px) {
+    .sub-main{
+        
+       flex-direction: row;
+       flex-wrap: wrap;
+       align-items: start;
+       justify-content:space-between;
+       
+      
+    }
+    .sub-main>div{
+        flex-direction: row;
+      
+       width: calc(100% / 2.3);
+       height: 100px;
+       margin: 5px;
+    }
+}
+
+

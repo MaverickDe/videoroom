@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="home.css"> -->
+    <script src="https://kit.fontawesome.com/8c12befb35.js" crossorigin="anonymous"></script>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+           
+            color:white
+        }
+
+        input{
+            color: black;
+        }
+
+        body{
+            width: 100vw;
+            height: 100vh;
+            min-height: 450px;
+            display: flex;justify-content: center;
+            background-color: rgb(4, 4, 68);
+            overflow-y:scroll;
+
+        }
+
+        .body{
+            width: 100%;
+            max-width: 1500px;
+            height: 100%;
+            /* background-color: red; */
+            display: flex;
+            justify-content: center;position: relative;
+        }
+
+        .body>section{
+            height: 100%;
+        }
+
+
+        .options{
+            width: 70px;
+            background-color: rgb(4, 40, 68,0.2) ;
+            /* z-index: 2; */
+            box-shadow: 0 1px 10px  black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+
+
+        .options>.logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+                width:50px;
+                height:50px;
+                /* background-color: blue; */
+                margin-bottom: 40px ;
+                margin-top: 10px 
+
+            }
+
+             .options>button {
+                min-width:50px;
+                max-width:50px;
+                height:50px;
+                background-color: blue;
+                margin-bottom: 20px ;
+              
+
+            }
+
+
+
+        .comment_users{
+            background-color: rgb(4, 40, 68,0.2) ;
+            /* width:calc(100%/2 - 20px); */
+            width:310px;
+            max-width: 310px;
+            box-shadow: 0 1px 10px  black;
+            z-index: 6;
+        }
+
+
+        .videos{
+            /* background-color: yellow; */
+            width:calc(100% - (70px + 310px));
+            display:flex;
+            flex-direction: column;
+            /* z-index: 7; */
+
+        }
+
+        .videos>div{
+            width:100%
+        }
+
+        .videos_div1{
+            height: 70px;
+            padding: 10px 20px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            overflow: scroll;
+
+            
+        }
+
+        .des{
+            margin-left:10px;
+           
+           
+         
+            /* background-color: blue; */
+        }
+
+        .videos_div2{
+
+            height: calc(100% - (70px + 70px - 20px));
+            /* background-color: yellow; */
+
+            margin-bottom:10px;
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            
+        }
+
+       
+        .main{
+            height: calc(100% - 200px);
+            background-color: rgb(128, 128, 12,0.1);
+            border-radius: 20px;
+            margin-bottom: 10px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            /* animation: loader 1s 1s infinite  */
+            /* background-color: red; */
+            
+        }
+
+
+            .loader{
+                animation: loader 1s 1s infinite 
+            }
+
+        @keyframes loader {
+
+            0%{
+                transform: scaleX(1);
+                background-color: rgb(6, 6, 61);
+            }
+            100%{
+                transform: scaleX(0.99);
+                background-color: rgb(128, 128, 12,0.1);
+            }
+            
+        }
+        
+        .sub-main{
+            /* background-color: red; */
+            height: 200px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+           
+        }
+
+
+        .user_controls{
+            position: absolute;
+           
+            max-width: 200px;
+            min-width:150px;
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            height: 25px;
+            bottom: 10px;
+            border-bottom-right-radius: 20px;
+            border-top-right-radius: 20px;
+            left: 0px;
+            background-color: rgb(12, 5, 78,0.7);
+            animation: slidein 0.5s ease;
+            z-index: 2;
+            display: none;
+            padding: 5px;
+
+        }
+        
+
+        .user_controls>button{
+            height: 100%;
+            min-width:20px;
+            max-width:40px;
+            background-color: blue;
+            margin-right:  10px
+            
+        }
+        
+        .speechanalysis{
+          
+            width:30px;
+            height: 35px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            
+        }
+
+
+
+
+        .options>.create-room ,.options>.join-room,.options>._exitroom{
+            position: relative;
+
+        }
+
+
+
+        .options>.create-room::before ,.options>.join-room::before,.options>._exitroom::before{
+            content: "create call";
+            position: absolute;
+        color: white;
+        top:50%;
+        left:100%;
+        /* --c:"block"; */
+        display: none;
+        font-size: larger;
+        /* width:fit-content */
+        }
+
+        
+        
+        
+        
+        .options> .join-room::before{
+            content: "join room";
+            
+            /* width:fit-content */
+        }
+        .options> ._exitroom::before{
+            content: "exit room";
+            
+            /* width:fit-content */
+        }
+        
+        .options>  .create-room:hover::before ,.options>.join-room:hover::before,.options>._exitroom:hover::before {
+         /* --c:"none"; */
+         display: block;
+        }
+      
+
+
+
+
+
+        .recordindicator{
+          
+            width:10px;
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 10px;
+            right: 50px;
+            background-color: red;
+            animation: blink 1s 1s infinite ease ;
+            display: none;
+            
+        }
+
+
+        @keyframes blink {
+            0%{
+                transform: scale(0.5);
+            }
+           100%{
+                transform: scale(1);
+            }
+            
+        }
+
+
+        
+
+
+
+        /*  */
+
+
+
+
+        @keyframes slidein {
+
+            0%{left:-10%;
+                opacity:0}
+                50%{
+                    opacity:0.5
+                }
+            100%{left:0%;
+                opacity:1}
+            
+        }
+
+        .sub-main>div{
+            height: 100%;
+            border-radius: 10px;
+            background-color: rgb(128, 128, 12,0.1);
+            /* background-color: blue; */
+
+            position: relative;
+            width:calc((100%  / 3) - 10px);
+            overflow:hidden
+
+        }
+        .controls{
+            height: 70px;
+            /* background-color: blue; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+            border-top: 1px solid rebeccapurple;
+            /* z-index: 6; */
+
+        }
+
+        button{
+            cursor: pointer;
+            outline: none;
+            border: none;
+            min-width: 90px;
+            border-radius: 10px;
+            height: 40px;
+            background-color: rgba(72, 12, 128, 0.1);
+          
+
+        }
+
+        .controls>button ,.copy-link {
+           
+            height: 50px;
+            margin: 0px 10px;
+           
+            color:white
+
+          
+        }
+
+
+        .controls>div{
+            /* background-color: blue; */
+            display: flex;
+        }
+        
+        .copy-link{
+            border-bottom-right-radius: 0px;
+            border-top-right-radius: 0px;
+            margin-right: 0px;
+        }
+        .link{
+            width:300px;
+            height: 50px;
+            overflow-x: scroll;
+            border-bottom-right-radius: 20px;
+            border-top-right-radius: 20px;
+            background-color: rgba(72, 12, 128, 0.1);
+            text-align: center
+            
+            
+        }
+        .controls> ._exitroom{
+            width:200px;
+            background-color: rgba(0, 255, 34,0.1);
+            color: red;
+            font-size: larger;
+            font-weight: bolder;
+        }
+        
+
+        
+
+::-webkit-scrollbar{
+    background: rgb(255, 10, 10);
+  height: 0px;
+  width: 0px;
+
+
+}
+
+
+
+
+        
+
+        .controls>button:hover, button:hover{
+            background-color: rgb(165, 42, 42,0.2);
+        }
+
+
+
+        .connected-users{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0px 10px ;
+            margin-top: 10px;
+            box-sizing: border-box;
+            height: calc(100% / 2.5);
+            overflow-y: scroll;
+            /* background-color: blue; */
+            width: 100%;
+
+        }
+
+        .connected-users>h4{
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .connected-users>div{
+            height: 50px;
+            width: 100%;
+            display: flex;
+        
+            
+            border-bottom: 1px solid blue;
+            align-items: center;
+        }
+
+
+        .connected-users>div img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 20px;
+
+        }
+        .connected-users>div p {
+            width: 100px;
+            overflow-x: scroll;
+            
+            margin-right: 20px;
+
+        }
+        .connected-users>div p {
+            width: 100px;
+            overflow-x: scroll;
+            
+            margin-right: 20px;
+
+        }
+
+        .message{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0px 10px ;
+            margin-top: 10px;
+            box-sizing: border-box;
+            height: calc(100% / 2.5);
+            overflow-y: scroll;
+            /* background-color: blue; */
+            width: 100%;
+            /* justify-content: flex-end;
+            align-items: flex-end;
+            */
+
+        }
+
+        .message>h4{
+            height: 50px;
+            margin-bottom: 10px;
+        }
+        
+        .message>div{
+            margin-bottom: 0px;
+            width: 100%;
+           min-height: 50px;
+           /* background-color: yellow; */
+            
+        }
+
+        .message>div>fieldset>legend{
+            text-transform: capitalize;
+            color: red;
+            font-weight: bolder;
+            /* text-decoration: wavy; */
+            font-size: larger;
+        }
+        .message>div>fieldset{
+           display: flex;
+           flex-direction: column;
+           /* justify-content: flex-end; */
+      
+            padding-left: 10px;
+            outline: none;
+            border: none;
+            margin-top: 10px;
+        
+           
+           
+           
+            /* background-color: red; */
+        }
+        .message>div>fieldset>p{
+          max-width: 310px;
+         
+        width:100%;
+        word-break: break-all;
+      
+          background-color: rgb(255, 0, 119);
+          min-height: 30px;
+          display: flex;
+          align-items: center;
+          border-bottom-right-radius: 10px;
+          border-top-right-radius: 20px;
+          padding: 10px;
+          box-sizing: border-box;
+          /* overflow-x: hidden; */
+           
+            /* background-color: red; */
+        }
+
+        textarea{
+            color: black;
+        }
+
+        .type_message{
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        width: 100%;
+        margin-top: 20px;
+        /* background-color: yellow; */
+        }
+        .type_message>textarea{
+            height:70%;
+            width:100%;
+            min-width:20px;;
+        }
+        .type_message>div
+        {
+
+            height:30%;
+            width:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .type_message>div>button
+        {
+            height:90%;
+            width:40px
+        }
+
+
+
+        .notification{
+            position: absolute;
+            width:400px;
+            height: 200px;
+            background-color:rgb(165, 42, 42,0.4);
+            top:50%;
+            color: aqua;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+
+        .message_not{
+            position: absolute;
+            width:50px;
+            height: 50px;
+            /* background-color:rgb(165, 42, 42,0.4); */
+            top:10%;
+            right:0%;
+            color: aqua;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* display: none; */
+            /* animation: fly 5s ease */
+        }
+
+        @keyframes fly {
+            0%{
+                top :100%;
+                opacity:1;
+                right: 10px
+            }
+            20%{
+                right:-20px
+            }
+            40%{
+                right:30px
+            }
+            60%{
+                opacity:0.5;
+                right:-30px
+            }
+            90%{
+                top :20%;
+                opacity:0.2;
+            }
+            100%{
+                display: none;
+               
+                opacity:0;
+            }
+            
+        }
+        ._createandjoin{
+            position: absolute;
+            width:calc(100% / 2);
+            min-width: 300px;
+            height: calc(100% / 2);
+            min-height: 500px;
+            background-color:rgb(165, 42, 42,0.4);
+            top:20%;
+            color: aqua;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 6;
+            /* display: none; */
+        }
+
+        ._createandjoin>div{
+            width:calc(100% - 100px);
+            /* height:calc(100% -100px) */
+           
+
+        }
+        ._createandjoin>div>input{
+            margin-bottom: 30px;
+            width:100%;
+           
+
+        }
+
+
+        
+
+        
+
+        .message_not>img{
+            width:100%;
+            height: 100%;
+            border-radius: 50%;
+
+        }
+
+
+        video{
+          
+           width: 100%;
+          height: 100%;
+            object-fit: cover;
+           
+          /* background-size: cover; */
+        /* background-color: blue; */
+            
+            
+        }
+
+
+       
+
+
+        @media screen and (max-width:1400px) {
+
+            
+            .comment_users{
+                display: none;
+                /* max-width: 100%; */
+            }
+
+            .comment_users_active{
+                display: block;
+               position: absolute;
+               right:0px;
+               background-color:rgb(4, 4, 68)
+            }
+
+
+            .videos{
+                width:calc(100% - 70px)
+            }
+
+            button{
+                min-width:50px;
+                /* color: aliceblue; */
+                cursor: pointer;
+
+                height: 40px;
+                font-size: 13px;
+            }
+
+
+           
+            .controls> ._exitroom{
+               width:50px;
+                height: 40px;
+                /* font-size: smaller; */
+                font-weight: 100;
+                font-size: 15px;
+
+            }
+            
+            .link{
+                width: 100px;
+                font-size: smaller;
+            }
+
+           
+        }
+
+
+
+        @media screen  and (max-width:560px) {
+
+            .main{
+                height: 245px;
+            }
+
+            .sub-main{
+                flex-wrap: wrap;
+                box-sizing: border-box;
+                justify-content: flex-start;
+            }
+            .sub-main>div{
+              height: 150px;
+              width: 150px;
+              margin: 10px;
+            }
+
+
+            .controls{
+                overflow-x: scroll;
+            }
+
+            .options{
+                display: none;
+            }
+
+           
+
+
+            .body{
+                position: relative;
+            }
+            .options_active{
+                display: flex;
+               position: absolute;
+                left:0px;
+                background-color:rgb(4, 4, 68)
+            }
+
+
+            .videos{
+                width: 100%;
+            }
+            
+            
+        }
+
+
+        @media screen and (max-width:392px) {
+
+            .sub-main{
+                justify-content: center;
+            }
+            .sub-main>div{
+              height: 100px;
+              width: 100px;
+
+            
+            }
+            
+
+            
+        .user_controls{
+           
+            min-width: 100%;
+           }
+
+            .controls>button{
+               margin: 0px 5px;
+            }
+
+            button{
+                min-width:20px;
+                max-width: 20px;
+                max-height: 30px;
+                font-size: 13px;
+                
+            }
+            .controls> ._exitroom{
+               min-width:50px;
+                height: 40px;
+                font-size:10px;
+
+            }
+            
+            .link{
+                width: 100px;
+                height: 30px;
+                font-size: 9px;
+                padding: 0px 10px;
+            }
+            
+        }
+
+
+        @media screen and (max-height:700px ){
+
+
+            .videos_div2{
+                /* display: flex; */
+                flex-direction: row;
+                background-color: black;
+                box-sizing: border-box;
+                
+            }
+            .main{
+               width:calc(100% - 30%);
+               height: 100%;
+               background-color: brown;
+               margin-right: 10px;
+               /* display: n; */
+                /* width:calc(100% - 25px) */
+            
+            }
+            .sub-main{
+               height: 100%;
+               width: 30%;
+               /* flex-wrap: wrap; */
+               flex-direction:column;
+               /* background-color: aqua; */
+               /* justify-content: flex-start; */
+
+            }
+
+            .sub-main>div{
+                width:100%;
+                height: calc(100% / 2.5);
+                margin-bottom:20px;
+                background-color: aqua;
+                /* height:60px */
+            }
+            
+            @media screen and (max-width:697px) {
+                .sub-main>div{
+                    width:100%;
+                    height: calc(100% / 4);
+                  
+                    /* height:60px */
+                }
+                
+            }
+        } 
+
+
+        @media screen and (max-height:579px) {
+            .sub-main{
+                
+               flex-direction: row;
+               flex-wrap: wrap;
+               align-items: start;
+               justify-content:space-between;
+               
+              
+            }
+            .sub-main>div{
+                flex-direction: row;
+              
+               width: calc(100% / 2.3);
+               height: 100px;
+               margin: 5px;
+            }
+        }
+
+
+        .svg{
+           
+            color: red; 
+           
+            
+            /* background-color: azure; */
+         }
+
+    </style>
+    
+</head>
+<body>
+
+    <div class="body">
+
+
+        <section class="options">
+            <div class="logo"><i class="fa-solid fa-video fa-2xl"></i></div>
+            
+        
+
+            <button class="create-room"><i class="fa-solid fa-house-crack fa-xl"></i></button>
+
+            <button class="join-room"><i class=" fa-solid fa-person-booth fa-xl"></i></button>
+
+            <button class="_exitroom"><i class="fa-solid fa-person-walking-arrow-right fa-xl"></i></button> 
+            
+        
+        </section>
+        <section class="videos">
+            <div class="videos_div1">
+                <h3 class="room">Room 404</h3>
+                <div >Description: <i class="des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur qui delectus voluptatem ad praesentium? Laboriosam est ex natus deleniti dignissimos at similique impedit obcaecati corporis, nulla, alias expedita voluptas optio recusandae nemo, delectus eveniet. Tempora adipisci fugit tenetur expedita! Debitis fuga vero harum repellat officia quasi, eaque rem beatae neque porro reiciendis, consectetur quae, ad asperiores libero perferendis exercitationem pariatur voluptas cupiditate? Suscipit eaque laborum provident dolore aperiam eum distinctio asperiores blanditiis tenetur. Laborum excepturi iusto aliquid aut, esse explicabo veritatis porro, doloribus eaque debitis laboriosam illum rem odit deleniti eius. Autem, accusamus! Facilis pariatur culpa libero perspiciatis ab ut?
+
+                </i></div>
+                
+            </div>
+            <div class="videos_div2">
+                <div class="main">
+                    <div class="speechanalysis"></div>
+                    <div class="recordindicator"></div>
+                    <div class="user_controls">
+                        <button class="recorduser"></button>
+                        
+                        <button class="pause-audio"></button>
+                        <button class="pause-video"></button>
+                    </div>
+                    <!-- <video autoplay src="./VID_20220116_200356.mp4"></video> -->
+
+                </div>
+                <div class="sub-main">
+                    <div class="sub-main1">
+                        <div class="speechanalysis"></div>
+                        <div class="recordindicator"></div>
+                        <div class="user_controls">
+                            <button class="recorduser"></button>
+                            
+                            <button class="pause-audio"></button>
+                            <button class="pause-video"></button>
+                        </div>
+                        <!-- <video  autoplay ></video> -->
+                    </div>
+                    <div class="sub-main1">
+                        <div class="speechanalysis"></div>
+                        <div class="recordindicator"></div>
+                        <div class="user_controls">
+                            <button class="recorduser"></button>
+                          
+                            <button class="pause-audio"></button>
+                            <button class="pause-video"></button>
+                            
+                        </div>
+                        <!-- <video autoplay ></video> -->
+                        
+                    </div>
+                    <div class="sub-main1">
+                        <div class="speechanalysis"></div>
+                        <div class="recordindicator"></div>
+                        <div class="user_controls">
+                            <button class="recorduser"></button>
+                            
+                            <button class="pause-audio"></button>
+                            <button class="pause-video"></button>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+           
+            <div class="controls">
+                <button class="mute_video"> <i class="fa-solid fa-video-slash fa-xl"></i></button>
+                <button class="mute_audio"><i class="fa-solid fa-microphone-slash fa-xl"></i></button>
+                <button class="_exitroom">Exit Room</button>
+                <button class="recored"><i class="fa-solid fa-record-vinyl fa-xl"></i></button>
+                <div>
+                    <button class=copy-link>copy</button>
+                    <div class="link">Lorem ipsum dolor sit amet consectetur adipisicin elit. Pa</div>
+                </div>
+            </div>
+        
+        </section>
+        
+        <section class="comment_users">
+
+            <div class="connected-users">
+                <h4>Connected Users</h4>
+
+                <!-- <div>
+                    <img src="imgs/bag1.jpg">
+                    <p>John</p>
+                    <h5 style="margin-right: 10px;">host</h5>
+
+                    <button class="block"> block user</button>
+
+                </div>
+                <div>
+                    <img src="imgs/bag1.jpg">
+                    <p>John</p>
+
+                    <button class="block"> block user</button>
+
+                </div> -->
+
+                
+            </div>
+
+
+            <div class="message">
+
+                <h4>messages</h4>
+
+
+                <div class="_message_">
+                    <fieldset>
+                        <legend>john</legend>
+                        <p>hello
+                           
+                        </p>
+                    </fieldset>
+                    <fieldset>
+                        <legend>john</legend>
+                        <p>hello
+                           Lorem ipsum, dolor sit amet consectetur adipisicing elit. In deserunt mollitia veniam cum fuga numquam ea soluta error aliquid ratione provident, sit quis facere, earum ad tenetur possimus debitis, odit dolor optio iusto qui dignissimos incidunt nemo. Cupiditate, earum id beatae saepe impedit, quis molestiae veritatis aliquam ea, consectetur pariatur laudantium hic necessitatibus debitis deleniti modi laboriosam veniam non natus laborum nihil? Exercitationem iure odit sunt fugiat a id? Rem velit nesciunt consequatur officiis qui optio quam dolores quae vero laborum quod, tempore corrupti mollitia cupiditate dolorem quasi non fuga possimus maiores unde, quo omnis, quis sunt totam? Possimus, aperiam.
+                        </p>
+                    </fieldset>
+                </div>
+
+            </div>
+
+            <div class="type_message">
+                <textarea></textarea>
+                <div>
+                    
+                    <button class="send"></button>
+                </div>
+
+            </div>
+        
+        </section>
+
+        
+    <div class="notification">
+        ewfwfwefrqwraw3raw3r3r
+
+    </div>
+
+    <!-- <div class="message_not">
+        <img src="imgs/bag1.jpg" alt="john">
+        <div ><span>john</span></div>
+    </div> -->
+
+    <!-- <input> -->
+
+    <form class="_createandjoin create-room input-prefered-room-name">
+            <div style="display: flex; flex-direction: column;" >
+                
+                <label for='name_link' class="name_link ">ddd</label>
+                <input required id ='name_link' type=  'text'class="roomname">
+                <label for='name' >name</label>
+               <input  required id ='name' type = text class="name">
+                <label for='description' >description</label>
+               <textarea  required id ='description' type = text class="description"></textarea>
+            </div>
+        <button > Join</button>
+        <div class="inputclose">close</div>
+        </form>
+        <script>
+            const  createandjoin=document.querySelector("._createandjoin")
+            // if(createandjoin.classList.contains)
+            console.log(createandjoin.classList[1])
+function _createandjoinfun(){
+
+    createandjoin.querySelector("button").innerText=createandjoin.classList[1]
+    document.querySelectorAll(".name_link").forEach(e=>{
+        e.innerText=createandjoin.classList[2]
+    })
+}
+            _createandjoinfun()
+            </script>
+   
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="/socket.io/socket.io.js">
+
+    </script>
+    <script src="home.js"></script>
+  
+
+
+    
+</body>
+</html>
