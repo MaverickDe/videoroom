@@ -51,6 +51,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            z-index: 6;
             
         }
 
@@ -217,6 +218,14 @@
             bottom: 10px;
             right: 10px;
             
+        }
+
+        .room{
+            text-transform: capitalize;
+
+        }
+        .des{
+            text-transform: uppercase;
         }
 
 
@@ -430,13 +439,16 @@
         .connected-users>h4{
             height: 50px;
             margin-bottom: 10px;
+            text-align: center;
+           width: 100%;
+            border-bottom: 1px solid red;
         }
 
         .connected-users>div{
             height: 50px;
             width: 100%;
             display: flex;
-        
+     
             
             border-bottom: 1px solid blue;
             align-items: center;
@@ -484,7 +496,10 @@
 
         .message>h4{
             height: 50px;
+            width: 100%;
+            text-align: center;
             margin-bottom: 10px;
+            border-bottom: 1px solid red;
         }
         
         .message>div{
@@ -518,9 +533,9 @@
             /* background-color: red; */
         }
         .message>div>fieldset>p{
-          max-width: 310px;
+          /* max-width: 310px; */
          
-        width:100%;
+        max-width:100%;
         word-break: break-all;
       
           background-color: rgb(255, 0, 119);
@@ -640,7 +655,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 6;
+            z-index: 5;
             /* display: none; */
         }
 
@@ -1035,7 +1050,7 @@
 
 
                 <div class="_message_">
-                    <fieldset>
+                    <!-- <fieldset>
                         <legend>john</legend>
                         <p>hello
                            
@@ -1046,16 +1061,16 @@
                         <p>hello
                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. In deserunt mollitia veniam cum fuga numquam ea soluta error aliquid ratione provident, sit quis facere, earum ad tenetur possimus debitis, odit dolor optio iusto qui dignissimos incidunt nemo. Cupiditate, earum id beatae saepe impedit, quis molestiae veritatis aliquam ea, consectetur pariatur laudantium hic necessitatibus debitis deleniti modi laboriosam veniam non natus laborum nihil? Exercitationem iure odit sunt fugiat a id? Rem velit nesciunt consequatur officiis qui optio quam dolores quae vero laborum quod, tempore corrupti mollitia cupiditate dolorem quasi non fuga possimus maiores unde, quo omnis, quis sunt totam? Possimus, aperiam.
                         </p>
-                    </fieldset>
+                    </fieldset> -->
                 </div>
 
             </div>
 
             <div class="type_message">
-                <textarea></textarea>
+                <textarea placeholder="send a message"></textarea>
                 <div>
                     
-                    <button class="send"></button>
+                    <button class="send">send</button>
                 </div>
 
             </div>

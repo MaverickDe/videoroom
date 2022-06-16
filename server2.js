@@ -374,6 +374,7 @@ async function joincall(socket,_e){
  })
  io.sockets.in(e.roomnameid).emit("name",JSON.stringify({name:e.name,id}))
  socket.information.description=master.information.description
+ socket.information.roomname=master.information.roomname
  msg(socket,"myinformation",{myinformation:socket.information})
  msg(socket,"masterid",{masterid,name:master.information.name,type:"master"})
  msg(master,"incoming_user",{id})

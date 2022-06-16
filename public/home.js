@@ -1,6 +1,69 @@
 
 
 (async ()=>{
+
+
+    const main = document.querySelector(".main")
+    
+    const submain = document.querySelector(".sub-main")
+    const submaindiv = submain.querySelectorAll(".sub-main1")
+
+    const  options = document.querySelector(" .options")
+    const  connected_users= document.querySelector(" .connected-users")
+    const  comment_users = document.querySelector(" .comment_users")
+    const room= document.querySelector(".room")
+
+
+    const maindiv = [main,...submaindiv]
+    let clientxx = 0
+
+
+    
+    document.addEventListener("touchstart",e=>{
+      clientxx = e.changedTouches[0].clientX
+
+    //   comment_users.style.position= `absolute`
+    
+        
+    })
+
+    let clientmovexx = 0
+    document.addEventListener("touchmove",e=>{
+      clientmovexx = e.changedTouches[0].clientX
+
+      
+
+
+        
+    })
+
+
+    document.addEventListener("touchend",e=>{
+        if( clientxx >=window.innerWidth-250 ){
+            if(Math.sign(clientmovexx-clientxx) == -1  ){
+
+                comment_users.classList.add("comment_users_active")
+                options.classList.remove("options_active")
+            }else{
+                comment_users.classList.remove("comment_users_active")
+                
+            }
+            
+        }
+        if( clientxx <=150 ){
+            if(Math.sign(clientmovexx-clientxx) == 1  ){
+                
+                comment_users.classList.remove("comment_users_active")
+                options.classList.add("options_active")
+            }else{
+              options.classList.remove("options_active")
+
+            }
+
+        }
+        console.log(Math.sign(clientmovexx-clientxx) == 1,clientxx,window.innerWidth-200)
+    })
+   
     
     function err(msg){
         let errdiv = document.querySelector(".notification")
@@ -54,16 +117,9 @@
       
     
     // return
-            const main = document.querySelector(".main")
-    
-            const submain = document.querySelector(".sub-main")
-            const submaindiv = submain.querySelectorAll(".sub-main1")
-    
-            const  options = document.querySelector(" .options")
-            const  connected_users= document.querySelector(" .connected-users")
-    
-    
-            const maindiv = [main,...submaindiv]
+         
+
+
     let   socket =io()
     let insession = false
     let eventtt = {};
@@ -316,7 +372,7 @@
            
     // ondragstart
     
-    const  comment_users= document.querySelector(" .comment_users")
+    // const  comment_users= document.querySelector(" .comment_users")
     
     console.log(comment_users)
             
@@ -781,11 +837,7 @@
     
             createandjoin.querySelector("button").addEventListener("click", async (e)=>{
                 e.preventDefault()
-                console.log(
-                    createandjoindescription.innerText,
-                    createandjoinname.innerText,
-
-                )
+               
                 if(createandjoindescription.value==""||createandjoinname.value=="" || createandjoinroomname.value==""){
                     notification("input all fields")
                     return
@@ -1131,6 +1183,7 @@
         </div>`
         if(peercon!=""){
             peercon.forEach(e=>{
+                room.innerHTML=""
                 if(e.rtc){
                     e.rtc.close()
                 }
@@ -1230,7 +1283,8 @@
     
     
     const  _message_ = document.querySelector("._message_")
-    document.querySelector(".send").addEventListener("click",e=>{
+    console.log(_message_.children.length==0)
+    function sendmsg(e){
         let textarea = document.querySelector("textarea")
         if(peercon!=" " &&  textarea.value!= ""){
             send("message",{message:textarea.value})
@@ -1240,7 +1294,7 @@
          fieldset.innerHTML=
          `
             
-            <legend class =`+`${myinformation.id}`+`>${(()=>{if(_message_.children[_message_.children.length-1].querySelector("legend").getAttribute("class")==myinformation.id){return""}return "Me"})()}</legend>
+            <legend class =`+`${myinformation.id}`+`>${(()=>{if(_message_.children.length!=0 && _message_.children[_message_.children.length-1].querySelector("legend").getAttribute("class")==myinformation.id){return""}return "Me"})()}</legend>
             <p>
           ${textarea.value}
     
@@ -1260,10 +1314,16 @@
     _message_.appendChild(fieldset)
     
         }
+    }
+    document.querySelector(".send").addEventListener("click",sendmsg)
+    document.querySelector("textarea").addEventListener("keypress",e=>{
+        if(e.key=="Enter"){
+            sendmsg()
+        }
     })
     
     
-    console.log(_message_.children[1],"lastcild")
+    // console.log(_message_.children[1],"lastcild")
     
     
     socket.on("allusernotification",e=>{
@@ -1756,6 +1816,8 @@ msnot(_e)
         console.log(_e,"information")
        myinformation = _e.myinformation
        document.querySelector(".link").innerText=myinformation.roomid
+       document.querySelector(".room").innerText=myinformation.roomname
+
        document.querySelector(".des").innerText=myinformation.description
       
        
