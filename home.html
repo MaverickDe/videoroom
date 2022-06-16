@@ -26,11 +26,13 @@
             display: flex;justify-content: center;
             background-color: rgb(4, 4, 68);
             overflow-y:scroll;
-
+            overflow-x:hidden;
+            
         }
-
+        
         .body{
             width: 100%;
+            overflow-x:hidden;
             max-width: 1500px;
             height: 100%;
             /* background-color: red; */
@@ -162,6 +164,22 @@
             100%{
                 transform: scaleX(0.99);
                 background-color: rgb(128, 128, 12,0.1);
+            }
+            
+        }
+        @keyframes button {
+
+            0%{
+                transform: scale(1);
+                /* background-color: rgb(6, 6, 61); */
+            }
+            50%{
+                transform: scale(0.7);
+                /* background-color: rgb(128, 128, 12,0.1); */
+            }
+            100%{
+                transform: scale(0.99);
+                /* background-color: rgb(128, 128, 12,0.1); */
             }
             
         }
@@ -537,6 +555,7 @@
          
         max-width:100%;
         word-break: break-all;
+        width:fit-content;
       
           background-color: rgb(255, 0, 119);
           min-height: 30px;
@@ -595,6 +614,7 @@
             top:50%;
             color: aqua;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             display: none;
@@ -714,8 +734,27 @@
                position: absolute;
                right:0px;
                background-color:rgb(4, 4, 68)
+               
             }
 
+            .body::after{
+                content: "<<";
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 5px;
+                font-size: larger;
+                color: azure;
+                position: absolute;
+                top: 50%;
+                right: -45px;
+                height: 150px;
+                width: 70px;
+                border-radius: 50%;
+                background-color: rgba(109, 93, 189, 0.3);
+                z-index: 5;
+                animation: button 3s infinite ;
+            }
 
             .videos{
                 width:calc(100% - 70px)
@@ -788,6 +827,26 @@
                position: absolute;
                 left:0px;
                 background-color:rgb(4, 4, 68)
+            }
+           
+
+            .body::before{
+                content: ">>";
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                padding: 5px;
+                font-size: larger;
+                color: azure;
+                position: absolute;
+                top: 50%;
+                left: -45px;
+                height: 150px;
+                width: 70px;
+                border-radius: 50%;
+                background-color: rgba(109, 93, 189, 0.3);
+                z-index: 5;
+                animation: button 3s infinite ;
             }
 
 

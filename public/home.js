@@ -15,7 +15,7 @@
 
 
     const maindiv = [main,...submaindiv]
-    let clientxx = 0
+    let clientxx 
 
 
     
@@ -25,9 +25,9 @@
     //   comment_users.style.position= `absolute`
     
         
+    console.log(e.timeStamp)
     })
-
-    let clientmovexx = 0
+    let clientmovexx 
     document.addEventListener("touchmove",e=>{
       clientmovexx = e.changedTouches[0].clientX
 
@@ -39,7 +39,18 @@
 
 
     document.addEventListener("touchend",e=>{
-        if( clientxx >=window.innerWidth-250 ){
+        console.log(Math.sqrt((clientmovexx-clientxx)**2),)
+console.log(clientmovexx)
+        if( clientmovexx==undefined ){
+         
+            clientmovexx  =undefined
+            clientxx = undefined
+            console.log("eeeeeeeeeeeeeeeeeeeeeeeeee")
+               return
+
+        }
+        console.log("hellllllllllllllllo")
+        if( clientxx >=window.innerWidth-250  ){
             if(Math.sign(clientmovexx-clientxx) == -1  ){
 
                 comment_users.classList.add("comment_users_active")
@@ -61,6 +72,8 @@
             }
 
         }
+        clientmovexx  =undefined
+        clientxx = undefined
         console.log(Math.sign(clientmovexx-clientxx) == 1,clientxx,window.innerWidth-200)
     })
    
@@ -70,7 +83,7 @@
     errdiv.style.display="flex"
     errdiv.style.color="red"
     // errdiv.style.backgroundColor="red"
-    errdiv.innerText=msg
+    errdiv.innerHTML=msg
     setTimeout(e=>{
         
         errdiv.style.color=null
@@ -1347,7 +1360,7 @@
     })
     
     socket.on("message",e=>{
-        console.log(e)
+        console.log(e,"messssssssssssssssssssssssssssss")
         let _e=JSON.parse(e)
         console.log(e)
         let fieldset =  document.createElement("fieldset")
@@ -1355,14 +1368,14 @@
         fieldset.innerHTML=
         `
            
-           <legend class=${_e.myinformation.id}>${(()=>{if(_message_.children[_message_.children.length-1].querySelector("legend").getAttribute("class")==_e.myinformation.id){return""}return _e.name})()}</legend>
+           <legend class=${_e.myinformation.id}>${(()=>{if(_message_.children.length!=0 &&_message_.children[_message_.children.length-1].querySelector("legend").getAttribute("class")==_e.myinformation.id){return""}return _e.name})()}</legend>
            <p>
          ${_e.message}
     
            </p>
       
            `;
-           console.log(_message_.children[_message_.children.length-1].querySelector("legend").getAttribute("class"))
+        //    console.log(_message_.children[_message_.children.length-1].querySelector("legend").getAttribute("class"))
            _message_.appendChild(fieldset)
          
 
@@ -1385,9 +1398,9 @@ msnot(_e)
     
     
     },
-        {right:`${Math.random() * -100}px`},
-        {right:`${Math.random() * 30}px`},
-        {right:`${Math.random() * -100}px`,opacity:0.5},
+        {right:`${Math.random() * 100}px`},
+        {right:`${Math.random() * 200}px`},
+        {right:`${Math.random() * 70}px`,opacity:0.5},
         {top:`20%`,opacity:0.2},
         {display:"none"},
         

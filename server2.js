@@ -58,7 +58,15 @@ io.on("connection", async socket=>{
 
          await   joincall(socket,e)
         }catch(e){
-            msg(socket,"err",{type:"refresh",err:"An err Ocurred ,things to try 1. try rejoining the room 2.  check if the room  id is correct 3. inputs are correctly filled 4. refresh your page"})
+            if(e.msg){
+                console.log(e)
+msg(socket,"err",{err:e.msg,type:"refresh"})
+            }else{
+
+                msg(socket,"err",{type:"refresh",
+                err:
+                "<div>An err Ocurred</div> ,<p>things to try</p> <ol><li> try rejoining the room </li><li>  check if the room  id is correct </li><li> inputs are correctly filled </li><li> refresh your page</li></ol>"})
+            }
 
         }
       
@@ -75,8 +83,13 @@ io.on("connection", async socket=>{
 
          await   createcall(socket,e)
         }catch(e){
-            msg(socket,"err",{type:"refresh",err:"An err Ocurred try creating the room"})
-
+            console.lof(e)
+            if(e.msg){
+                msg(socket,"err",{err:e.msg,type:"refresh"})
+                            }else{
+                
+            msg(socket,"err",{type:"refresh",err:"<div>An err Ocurred try creating the room</div>"})
+                            }
         }
       
         
@@ -117,8 +130,12 @@ io.on("connection", async socket=>{
 
           await   closeroom(socket,e)
         }catch(e){
+            if(e.msg){
+                msg(socket,"err",{err:e.msg,type:e.type})
+                            }else{
+                
             msg(socket,"err",{type:"normal",err:"An err Ocurred try refreshing the page"})
-
+                            }
         }
        
 
@@ -138,10 +155,14 @@ io.on("connection", async socket=>{
           await   userleft(socket,e)
 
         }catch(e){
+            if(e.msg){
+                msg(socket,"err",{err:e.msg,type:e.type})
+                            }else{
+                
             msg(socket,"err",{type:"normal",err:"An err Ocurred try refreshing the page"})
 
         }
-
+    }
     })
     socket.on("message",async e=>{
         // console.log(e)
@@ -152,9 +173,14 @@ io.on("connection", async socket=>{
           msg(socket,"message",_e)
 
         }catch(e){
+
+            if(e.msg){
+                msg(socket,"err",{err:e.msg,type:e.type})
+                            }else{
+                
             msg(socket,"err",{type:"normal",err:"An err Ocurred try rejoining the room"})
 
-        }
+        }}
 
     })
     socket.on("iceCandidate",async e=>{
@@ -167,9 +193,14 @@ io.on("connection", async socket=>{
        //   console.log(user)
          msg(user,"iceCandidate",_e)
         }catch(e){
+
+            if(e.msg){
+                msg(socket,"err",{err:e.msg,type:e.type})
+                            }else{
+                
             msg("err",{type:"normal",err:"An err Ocurred exchangin handshake"})
 
-        }
+        }}
     //   console.log(_e.id,_e.senderid,"ice")
 
     })
@@ -186,9 +217,13 @@ io.on("connection", async socket=>{
     
             msg(user,"offer",_e)
         }catch(e){
+            if(e.msg){
+                msg(socket,"err",{err:e.msg,type:e.type})
+                            }else{
+                
             msg(socket,"err",{type:"normal",err:"An err Ocurred exchangin handshake"})
 
-        }
+        }}
        
     
 
@@ -206,9 +241,14 @@ io.on("connection", async socket=>{
               msg(user,"answer",_e)
 
             }catch(e){
+
+                if(e.msg){
+                    msg(socket,"err",{err:e.msg,type:e.type})
+                                }else{
+                    
                 msg(socket,"err",{type:"normal",err:"An err Ocurred exchangin handshake"})
     
-            }
+            }}
         //   console.log(_e.id,_e.senderid,"answer")
        
         })
@@ -220,12 +260,17 @@ io.on("connection", async socket=>{
 
             let _e=JSON.parse(e)
             await checkobj(_e)
-          let user = await  finduser(socket,e)
+          let user = await  finduser(socket,{err:e.msg,type:e.type})
           msg(user,"negotiateoffer",_e)
         }catch(e){
+
+            if(e.msg){
+                msg(socket,"err",{err:e.msg,type:e.type})
+                            }else{
+                
             msg(socket,"err",{type:"normal",err:"An err Ocurred exchangin handshake"})
 
-        }
+        }}
    
     })
 
@@ -235,12 +280,17 @@ io.on("connection", async socket=>{
 
             let _e=JSON.parse(e)
             await checkobj(_e)
-          let user = await  finduser(socket,e)
+          let user = await  finduser(socket,{err:e.msg,type:e.type})
           msg(user,"negotiateanswer",_e)
         }catch(e){
+
+            if(e.msg){
+                msg(socket,"err",{err:e.msg,type:e.type})
+                            }else{
+                
             msg(socket,"err",{type:"normal",err:"An err Ocurred exchangin handshake"})
 
-        }
+        }}
    
     })
 
@@ -254,8 +304,13 @@ io.on("connection", async socket=>{
             msg(user,"block",_e)
 
         }catch(e){
+
+            if(e.msg){
+                msg(socket,"err",{err:e.msg,type:e.type})
+                            }else{
+                
             msg(socket,"err",{type:"normal",err:"An err Ocurred "})
-        }
+        }}
     })
     
 
@@ -321,7 +376,7 @@ io.on("connection", async socket=>{
 async function userleft(socket,e){
      let _e=JSON.parse(e)
      if(!checkobj(e)){
-        throw("err")
+        throw({type:"normal",msg:"fill in your appropriate details"})
     }
      console.log("userleft")
     // console.log(_e ,"_____rrrrrr")
@@ -339,16 +394,16 @@ console.log(socket.information.id,"iddd")
 async function joincall(socket,_e){
     let e=JSON.parse(_e)
     if(!checkobj(e)){
-        throw("err")
+        throw({type:"refresh",msg:"fill in your appropriate details"})
     }
     console.log(e)
     
     let id = new Date().getTime()
     let room = await io.in(e.roomnameid).fetchSockets()
     // console.log(room)
-    if(room==" "){
+    if(room==" "  || room.length == 4){
         console.log("nullllllllllllll")
-       throw("err")
+       throw({type:"refresh",msg:"the room is unavailable now"})
         // return
     }
     socket.join(e.roomnameid)
@@ -359,7 +414,7 @@ async function joincall(socket,_e){
 
  let master=room.find(e=>e.information.type=="create_call")
  if(!master){
-    throw("err")
+    throw({type:"normal",msg:"<p>room not found</p><ol><li>Tell admin to recreate room</li></ol>"})
 }
 
  console.log(master.information.id,id,"infomation")
@@ -413,7 +468,7 @@ async function createcall(socket,e){
     let _e=JSON.parse(e)
     if(!checkobj(_e)){
         console.log("ggggggg")
-        throw("err")
+        throw({type:"refresh",msg:"fill in your appropriate details"})
     }
    
     console.log(_e,!checkobj(e))
@@ -456,7 +511,7 @@ async function createcall(socket,e){
 async function  closeroom(socket,_e){
     let e=JSON.parse(_e)
     if(!checkobj(e)){
-        throw("err")
+        throw({type:"normal",msg:"fill in your appropriate details"})
     }
     
     let room =e.roomid 
@@ -524,7 +579,7 @@ function roomusers(socket){
     // if(typeof type == String){
     //     let  _type
     if(!socket.information.roomid){
-        throw("err")
+        throw({type:"normal",msg:"fill in your appropriate details"})
     }
     
 
@@ -558,10 +613,10 @@ function finduser(socket,_e){
         // }
         e =JSON.parse(_e)
         if(Object.values(e)==""){
-            throw("err")
+            throw({type:"normal",msg:"fill in your appropriate details"})
         }
         if(!socket.information){
-            throw("err")
+            throw({type:"normal",msg:"<p>try rejoining the room</p><p>A problem has arised</p>"})
         }
     let id = e.id
     let room =socket.information.roomid
