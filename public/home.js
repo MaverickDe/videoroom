@@ -16,18 +16,22 @@
 
     const maindiv = [main,...submaindiv]
     let clientxx 
+    let timeStampxx
+    let clientyy
 
 
     
     document.addEventListener("touchstart",e=>{
       clientxx = e.changedTouches[0].clientX
-
+      clientyy = e.changedTouches[0].clientY
+timeStampxx=e.timeStamp
     //   comment_users.style.position= `absolute`
     
         
     console.log(e.timeStamp)
     })
     let clientmovexx 
+   
     document.addEventListener("touchmove",e=>{
       clientmovexx = e.changedTouches[0].clientX
 
@@ -39,9 +43,13 @@
 
 
     document.addEventListener("touchend",e=>{
-        console.log(Math.sqrt((clientmovexx-clientxx)**2),)
+
+       let  time =e.timeStamp-timeStampxx
+       let y  =Math.sqrt((e.changedTouches[0].clientY-clientyy)**2)
+
+        console.log(y,"Yyyyyyyyyy")
 console.log(clientmovexx)
-        if( clientmovexx==undefined ){
+        if( clientmovexx==undefined  || time>=300 || y>50 ){
          
             clientmovexx  =undefined
             clientxx = undefined
@@ -50,7 +58,7 @@ console.log(clientmovexx)
 
         }
         console.log("hellllllllllllllllo")
-        if( clientxx >=window.innerWidth-250  ){
+        if( clientxx >=window.innerWidth-100  ){
             if(Math.sign(clientmovexx-clientxx) == -1  ){
 
                 comment_users.classList.add("comment_users_active")
@@ -61,7 +69,7 @@ console.log(clientmovexx)
             }
             
         }
-        if( clientxx <=150 ){
+        if( clientxx <=50 ){
             if(Math.sign(clientmovexx-clientxx) == 1  ){
                 
                 comment_users.classList.remove("comment_users_active")
@@ -74,7 +82,7 @@ console.log(clientmovexx)
         }
         clientmovexx  =undefined
         clientxx = undefined
-        console.log(Math.sign(clientmovexx-clientxx) == 1,clientxx,window.innerWidth-200)
+        console.log(Math.sign(clientmovexx-clientxx) == 1,clientxx,window.innerWidth-700)
     })
    
     
