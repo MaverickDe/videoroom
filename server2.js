@@ -59,7 +59,7 @@ io.on("connection", async socket=>{
          await   joincall(socket,e)
         }catch(e){
             if(e.msg){
-                console.log(e)
+              
 msg(socket,"err",{err:e.msg,type:"refresh"})
             }else{
 
@@ -83,7 +83,7 @@ msg(socket,"err",{err:e.msg,type:"refresh"})
 
          await   createcall(socket,e)
         }catch(e){
-            console.lof(e)
+            
             if(e.msg){
                 msg(socket,"err",{err:e.msg,type:"refresh"})
                             }else{
@@ -194,11 +194,12 @@ msg(socket,"err",{err:e.msg,type:"refresh"})
          msg(user,"iceCandidate",_e)
         }catch(e){
 
+            console.log(e)
             if(e.msg){
-                msg(socket,"err",{err:e.msg,type:e.type})
+                msg(socket,"err",e)
                             }else{
                 
-            msg("err",{type:"normal",err:"An err Ocurred exchangin handshake"})
+            msg("err",{type:"refresh",err:"An err Ocurred exchangin handshake"})
 
         }}
     //   console.log(_e.id,_e.senderid,"ice")
@@ -241,6 +242,7 @@ msg(socket,"err",{err:e.msg,type:"refresh"})
               msg(user,"answer",_e)
 
             }catch(e){
+                console.log(e)
 
                 if(e.msg){
                     msg(socket,"err",{err:e.msg,type:e.type})
@@ -260,13 +262,15 @@ msg(socket,"err",{err:e.msg,type:"refresh"})
 
             let _e=JSON.parse(e)
             await checkobj(_e)
-          let user = await  finduser(socket,{err:e.msg,type:e.type})
+          let user = await  finduser(socket,e)
           msg(user,"negotiateoffer",_e)
         }catch(e){
+           
 
             if(e.msg){
                 msg(socket,"err",{err:e.msg,type:e.type})
                             }else{
+                             
                 
             msg(socket,"err",{type:"normal",err:"An err Ocurred exchangin handshake"})
 
@@ -280,9 +284,10 @@ msg(socket,"err",{err:e.msg,type:"refresh"})
 
             let _e=JSON.parse(e)
             await checkobj(_e)
-          let user = await  finduser(socket,{err:e.msg,type:e.type})
+          let user = await  finduser(socket,e)
           msg(user,"negotiateanswer",_e)
         }catch(e){
+           
 
             if(e.msg){
                 msg(socket,"err",{err:e.msg,type:e.type})
@@ -353,7 +358,7 @@ msg(socket,"err",{err:e.msg,type:"refresh"})
 
 
     socket.on("disconnect",(reason,des)=>{
-        console.log(reason,des,socket.information)
+        
 
         if(socket.information && socket.information.type=="create_call"){
             closeroom(socket,JSON.stringify(socket.information))
@@ -378,14 +383,14 @@ async function userleft(socket,e){
      if(!checkobj(e)){
         throw({type:"normal",msg:"fill in your appropriate details"})
     }
-     console.log("userleft")
+    
     // console.log(_e ,"_____rrrrrr")
 //   let user =  await finduser(socket,e)
  socket.leave(
       socket.information.roomid)
 
       io.sockets.in(socket.information.roomid).emit("userleft",JSON.stringify({name:socket.information.name,id:socket.information.id}))
-console.log(socket.information.id,"iddd")
+
       msg(socket,"allusernotification",{notification:`${socket.information.name } left the room`})
   
 }
@@ -396,13 +401,13 @@ async function joincall(socket,_e){
     if(!checkobj(e)){
         throw({type:"refresh",msg:"fill in your appropriate details"})
     }
-    console.log(e)
+    
     
     let id = new Date().getTime()
     let room = await io.in(e.roomnameid).fetchSockets()
     // console.log(room)
     if(room==" "  || room.length == 4){
-        console.log("nullllllllllllll")
+       
        throw({type:"refresh",msg:"the room is unavailable now"})
         // return
     }
@@ -417,9 +422,9 @@ async function joincall(socket,_e){
     throw({type:"normal",msg:"<p>room not found</p><ol><li>Tell admin to recreate room</li></ol>"})
 }
 
- console.log(master.information.id,id,"infomation")
+ 
  let masterid = master.information.id
- console.log(masterid,id,"master")
+ 
 
  room.forEach(e=>{
      if(e.information.type!="create_call" && e.information.name!=socket.information.name){
@@ -435,7 +440,7 @@ async function joincall(socket,_e){
  msg(master,"incoming_user",{id})
 //  msg(socket,"name",{})
  msg(socket,"allusernotification",{notification:"new user connected"})
- console.log(id,"iddddd")
+ 
  
 
 
@@ -467,11 +472,11 @@ async function createcall(socket,e){
 
     let _e=JSON.parse(e)
     if(!checkobj(_e)){
-        console.log("ggggggg")
+     
         throw({type:"refresh",msg:"fill in your appropriate details"})
     }
    
-    console.log(_e,!checkobj(e))
+  
     
     let roomid  = new Date().getTime().toString()+Math.random().toString()
     let id  = new Date().getTime()

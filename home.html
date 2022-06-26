@@ -26,7 +26,7 @@
             min-height: 450px;
             display: flex;justify-content: center;
             background-color: rgb(4, 4, 68);
-            /* overflow-y:scroll; */
+            overflow-y:hidden;
             overflow-x:hidden;
             
         }
@@ -930,6 +930,9 @@
 
 
         @media screen and (max-height:700px ){
+            body{
+                overflow-y: scroll;
+            }
             ._createandjoin{
                 min-height: 300px
             }
