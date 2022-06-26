@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Video Room</title>
+    <link rel="icon"  href="imgs/icon/images(2).ico" type="image/x-icon">
     <!-- <link rel="stylesheet" href="home.css"> -->
     <script src="https://kit.fontawesome.com/8c12befb35.js" crossorigin="anonymous"></script>
     <style>
@@ -25,7 +26,7 @@
             min-height: 450px;
             display: flex;justify-content: center;
             background-color: rgb(4, 4, 68);
-            overflow-y:scroll;
+            /* overflow-y:scroll; */
             overflow-x:hidden;
             
         }
@@ -110,7 +111,7 @@
             padding: 10px 20px;
             box-sizing: border-box;
             margin-bottom: 10px;
-            overflow: scroll;
+            /* overflow: scroll; */
 
             
         }
@@ -308,7 +309,10 @@
             display: none;
             
         }
+        .blink{
+    animation: blink 1s 1s infinite ease ;
 
+}
 
         @keyframes blink {
             0%{
@@ -610,7 +614,7 @@
             position: absolute;
             width:400px;
             height: 200px;
-            background-color:rgb(165, 42, 42,0.4);
+            background-color:rgb(165, 42, 42,0.6);
             top:50%;
             color: aqua;
             display: flex;
@@ -618,6 +622,22 @@
             justify-content: center;
             align-items: center;
             display: none;
+            z-index: 9;
+        }
+        .lilnotification{
+            position: absolute;
+            width:400px;
+           min-height: 20px;
+           padding: 20px;
+            background-color:rgb(165, 42, 42,0.6);
+            top:20px;
+            color: aqua;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: none;
+            z-index: 9;
         }
 
         .message_not{
@@ -710,6 +730,7 @@
            width: 100%;
           height: 100%;
             object-fit: cover;
+            /* overflow: hidden; */
            
           /* background-size: cover; */
         /* background-color: blue; */
@@ -758,6 +779,7 @@
 
             .videos{
                 width:calc(100% - 70px)
+                
             }
 
             button{
@@ -800,10 +822,12 @@
                 flex-wrap: wrap;
                 box-sizing: border-box;
                 justify-content: flex-start;
+                height: calc(100% - 245px);
+
             }
             .sub-main>div{
-              height: 150px;
-              width: 150px;
+              height: calc(100% / 2.3);
+              width: calc(100% / 2.3);
               margin: 10px;
             }
 
@@ -851,7 +875,7 @@
 
 
             .videos{
-                width: 100%;
+                width: 100%
             }
             
             
@@ -863,12 +887,12 @@
             .sub-main{
                 justify-content: center;
             }
-            .sub-main>div{
+            /* .sub-main>div{
               height: 100px;
               width: 100px;
 
             
-            }
+            } */
             
 
             
@@ -906,7 +930,9 @@
 
 
         @media screen and (max-height:700px ){
-
+            ._createandjoin{
+                min-height: 300px
+            }
 
             .videos_div2{
                 /* display: flex; */
@@ -916,7 +942,7 @@
                 
             }
             .main{
-               width:calc(100% - 30%);
+               width:calc(100% - 35%);
                height: 100%;
                background-color: brown;
                margin-right: 10px;
@@ -926,7 +952,7 @@
             }
             .sub-main{
                height: 100%;
-               width: 30%;
+               width: 35%;
                /* flex-wrap: wrap; */
                flex-direction:column;
                /* background-color: aqua; */
@@ -938,7 +964,7 @@
                 width:100%;
                 height: calc(100% / 2.5);
                 margin-bottom:20px;
-                background-color: aqua;
+                /* background-color: aqua; */
                 /* height:60px */
             }
             
@@ -968,7 +994,7 @@
                 flex-direction: row;
               
                width: calc(100% / 2.3);
-               height: 100px;
+               height: (100% / 2.3);
                margin: 5px;
             }
         }
@@ -982,13 +1008,39 @@
             /* background-color: azure; */
          }
 
+
+         .online_indicator{
+             /* position: absolute; */
+             height: 10px;
+             width: 10px;
+             display:inline-block;
+             background-color:blue;
+             border-radius: 50%;
+            margin-right: 10px;
+             z-index:10;
+             /* margin-bottom:5px; */
+             position :relative
+
+         }
+        .online_indicator_test{
+           
+             background-color: rgb(202, 193, 193,0.4);
+             border-radius: 5px;
+             height: 20px;
+             display: none;
+           
+         }
+
+         .online_indicator:hover~.online_indicator_test{
+             display: inline-block;
+         }
     </style>
     
 </head>
 <body>
 
     <div class="body">
-
+<!-- <div class="online_indicator"></div> -->
 
         <section class="options">
             <div class="logo"><i class="fa-solid fa-video fa-2xl"></i></div>
@@ -1005,8 +1057,10 @@
         </section>
         <section class="videos">
             <div class="videos_div1">
-                <h3 class="room">Room 404</h3>
-                <div >Description: <i class="des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur qui delectus voluptatem ad praesentium? Laboriosam est ex natus deleniti dignissimos at similique impedit obcaecati corporis, nulla, alias expedita voluptas optio recusandae nemo, delectus eveniet. Tempora adipisci fugit tenetur expedita! Debitis fuga vero harum repellat officia quasi, eaque rem beatae neque porro reiciendis, consectetur quae, ad asperiores libero perferendis exercitationem pariatur voluptas cupiditate? Suscipit eaque laborum provident dolore aperiam eum distinctio asperiores blanditiis tenetur. Laborum excepturi iusto aliquid aut, esse explicabo veritatis porro, doloribus eaque debitis laboriosam illum rem odit deleniti eius. Autem, accusamus! Facilis pariatur culpa libero perspiciatis ab ut?
+           <span>  <h3 style="display:inline-block ;margin-right: 20px;" class="room">
+        video Room</h3>   <div class="online_indicator"></div><span class="online_indicator_test">online</span></span>  
+             
+                <div >Description: <i class="des">Create a Video Room
 
                 </i></div>
                 
@@ -1034,7 +1088,7 @@
                             <button class="pause-audio"></button>
                             <button class="pause-video"></button>
                         </div>
-                        <!-- <video  autoplay ></video> -->
+                        <!-- <video  autoplay src="./VID_20220116_200356.mp4"></video> -->
                     </div>
                     <div class="sub-main1">
                         <div class="speechanalysis"></div>
@@ -1141,6 +1195,11 @@
         ewfwfwefrqwraw3raw3r3r
 
     </div>
+        
+    <div class="lilnotification">
+        ewfwfwefrqwraw3raw3r3r
+
+    </div>
 
     <!-- <div class="message_not">
         <img src="imgs/bag1.jpg" alt="john">
@@ -1153,11 +1212,11 @@
             <div style="display: flex; flex-direction: column;" >
                 
                 <label for='name_link' class="name_link ">ddd</label>
-                <input required id ='name_link' type=  'text'class="roomname">
+                <input required minlength="2" maxlength="10" id ='name_link' type=  'text'class="roomname">
                 <label for='name' >name</label>
-               <input  required id ='name' type = text class="name">
-                <label for='description' >description</label>
-               <textarea  required id ='description' type = text class="description"></textarea>
+               <input  required maxlength="10" maxlength="2"id ='name' type = text class="name">
+                <label for='description'  >description</label>
+               <textarea  required id ='description' minlength="10" maxlength="40" type = text class="description"></textarea>
             </div>
         <button > Join</button>
         <div class="inputclose">close</div>
