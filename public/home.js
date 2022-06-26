@@ -598,13 +598,19 @@ change = true
                     const pause_video=  div.querySelector(".pause-video")
                     const recoreduser = div.querySelector(".recorduser")
                     const recordindicator = div.querySelector(".recordindicator")
-                    let isvideo = true
-                    let isaudio = true
+                    // let isvideo = true
+                    // let isaudio = true
                     function pauseaudio(e)
                         {
-                            e.target.classList.toggle("svg")
-                            isaudio = !isaudio
+                            // e.target.classList.toggle("svg")
+                          let   isaudio = !srcObject.getAudioTracks()[0].enabled
                             srcObject.getAudioTracks()[0].enabled=isaudio
+                            if(isaudio==false){
+                                e.currentTarget.classList.add("svg")
+                            }else{
+                                e.currentTarget.classList.remove("svg")
+                    
+                            }
                            
                     }
                     // pause_audio.removeEventListener("click",pauseaudio)
@@ -613,10 +619,18 @@ change = true
                     
                 
                      function pausevideo(e){
-                        e.target.classList.toggle("svg")
-                        isvideo= !isvideo
-                     
+                        // e.target.classList.toggle("svg")
+                      let  isvideo= !srcObject.getVideoTracks()[0].enabled
+
+                        // console.log(srcObject.getVideoTracks()[0].enabled)
+                     console.log(e.currentTarget)
                         srcObject.getVideoTracks()[0].enabled=isvideo
+                        if(isvideo==false){
+                            e.currentTarget.classList.add("svg")
+                        }else{
+                            e.currentTarget.classList.remove("svg")
+                
+                        }
                     }
                     // pause_video.removeEventListener("click",pausevideo)
                     pause_video.addEventListener("click",pausevideo)
@@ -627,7 +641,7 @@ change = true
     
      function recordd (e){
      
-    e.target.classList.toggle("svg")
+    // e.target.classList.toggle("svg")
     audd2.recorderstate  = !audd2.recorderstate
     
     
@@ -640,7 +654,9 @@ change = true
     
     if(!audd2.recorderstate ){
     audd2.download.recorder.stop()
-
+  
+        e.currentTarget.classList.remove("svg")
+    
     
     
     }
@@ -679,7 +695,11 @@ change = true
     
     
       
+    if(recorder){
+        e.currentTarget.classList.add("svg")
     }
+    }
+
     }
                     // recoreduser.removeEventListener("click",recordd)
                     recoreduser.addEventListener("click",recordd)
@@ -1526,18 +1546,32 @@ msnot(_e)
     
     })
     
-    let mutevideo = true
-    let muteaudio = true
+    // let mutevideo = true
+    // let muteaudio = true
     document.querySelector(".mute_video").addEventListener("click",e=>{
-        if(localstreamaudio){
-            mutevideo =!mutevideo
-            localstreamaudio.getVideoTracks()[0].enabled=mutevideo
+        if(localstream){
+         let   mutevideo =!localstream.getVideoTracks()[0].enabled
+            localstream.getVideoTracks()[0].enabled=mutevideo
+            if(mutevideo==false){
+                e.currentTarget.classList.add("svg")
+            }else{
+                e.currentTarget.classList.remove("svg")
+    
+            }
+            console.log(mutevideo)
         }
+
     })
     document.querySelector(".mute_audio").addEventListener("click",e=>{
-        if(localstreamaudio){
-            muteaudio =!muteaudio
-            localstreamaudio.getVideoTracks()[0].enabled=mutevideo
+        if(localstream){
+         let    muteaudio =!localstream.getAudioTracks()[0].enabled
+            localstream.getAudioTracks()[0].enabled=muteaudio
+            if(muteaudio==false){
+                e.currentTarget.classList.add("svg")
+            }else{
+                e.currentTarget.classList.remove("svg")
+    
+            }
         }
     })
     
@@ -1594,6 +1628,11 @@ msnot(_e)
                     }
                     
                     recorder.start()
+                    if (recorder){
+                        
+                            e.currentTarget.classList.add("svg")
+                        
+                    }
            
                        
            
@@ -1603,6 +1642,7 @@ msnot(_e)
         }
         if(!recordstart){
             recorder.stop()
+            e.currentTarget.classList.remove("svg")
            
     
     
