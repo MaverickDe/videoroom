@@ -123,6 +123,18 @@ timeStampxx=e.timeStamp
         
     
     }
+    function   lilerr(msg){
+        let notdiv = document.querySelector(".lilnotification")
+        notdiv.style.display="flex"
+        notdiv.innerHTML=msg
+        setTimeout(e=>{
+            
+            notdiv.style.display="none"
+            },2000)
+            
+        
+    
+    }
     
 
    
@@ -177,7 +189,7 @@ timeStampxx=e.timeStamp
     
             if((countt== 3 || countt== 6 ||countt== 9) && insession){
                
-               lilnotification("<p>network disconnected</p><p>try connecting your network or you will disconnected from the room</p>")
+               lilerr("<p>network disconnected</p><p>try connecting your network or you will disconnected from the room</p>")
             }
             if (countt ==9){
 
@@ -804,6 +816,22 @@ change = true
            const  createandjoindescription = createandjoin.querySelector(".description")
     
     
+           let dd= /[>{}%/<\!@#\$%\^\&*\)\(\+=\-]+/ig
+           let df= "f>>>"
+           console.log(df.match(dd))
+function _match(str){
+    strs=str.toString()
+    let dd= /[ >{}%/<!@#\$%\^\&*\)\(\+=\-]+/ig
+   
+
+    console.log(strs.match(dd))
+    if(strs.match(dd) && strs.match(dd)!=""){
+        return true
+
+    }
+    return false
+}
+
     createandjoin.addEventListener("click",e=>{
         options.classList.remove("options_active")
         comment_users.classList.remove("comment_users_active")
@@ -820,11 +848,17 @@ change = true
                 if(!dd){
                     return
                    }
-               
-                if(createandjoindescription.value==""||createandjoinname.value=="" || createandjoinroomname.value==""){
-                    notification("input all fields")
-                    return
-                }
+                   
+                   if(createandjoindescription.value==""||createandjoinname.value=="" || createandjoinroomname.value==""){
+                       lilerr("input all fields")
+                       return
+                    }
+                    
+                          if(_match(createandjoindescription.value)||_match(createandjoinname.value) || _match(createandjoinroomname.value)){
+                    
+                                           lilerr("input should contain only alphabets ")
+                                           return
+                                       }
 
 
                 options.classList.remove("options_active")
